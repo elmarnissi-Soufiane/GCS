@@ -1,0 +1,133 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    padding: 0 20px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+/* Gauche */
+.welcome h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+}
+
+.welcome p {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+/* Recherche */
+.search {
+    flex: 1;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 0 30px;
+}
+
+.search i {
+    color: #888;
+    margin-right: 10px;
+}
+
+.search input {
+    border: none;
+    outline: none;
+    background: transparent;
+    flex: 1;
+    font-size: 14px;
+}
+
+/* Actions */
+.actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icon-btn {
+    border: none;
+    background: #f8fafc;
+    border-radius: 10px;
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.icon-btn i {
+    font-size: 16px;
+    color: #333;
+}
+
+/* Profil */
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    border-radius: 12px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.2;
+}
+
+.name {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.role {
+    font-size: 12px;
+    color: #888;
+}
+
+.profile-wrapper {
+    position: relative;
+}
+
+.dropdown {
+    position: absolute;
+    right: 0;
+    top: 110%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px 0;
+    margin: 0;
+    min-width: 160px;
+    z-index: 1000;
+}
+
+.dropdown li {
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+}
+
+.dropdown li:hover {
+    background: #f5f5f5;
+}

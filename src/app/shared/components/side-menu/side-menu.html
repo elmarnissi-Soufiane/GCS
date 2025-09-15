@@ -1,0 +1,55 @@
+<div class="sidebar" [class.dark]="isDarkMode">
+    <!-- Logo -->
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="logo">
+        <h2>Inventory</h2>
+    </div>
+
+    <!-- Menu -->
+    <ul class="menu">
+        <li class="active">
+            <i class="fas fa-chart-line icon"></i>
+            <span>Dashboard</span>
+        </li>
+        <li>
+            <i class="fas fa-box icon"></i>
+            <span>Items</span>
+        </li>
+        <li>
+            <i class="fas fa-tools icon"></i>
+            <span>Tools</span>
+        </li>
+        <li>
+            <i class="fas fa-briefcase icon"></i>
+            <span>Assets</span>
+        </li>
+        <li>
+            <i class="fas fa-folder icon"></i>
+            <span>Project</span>
+        </li>
+        <li>
+            <i class="fas fa-file-alt icon"></i>
+            <span>Request</span>
+        </li>
+        <li>
+            <i class="fas fa-hand-holding icon"></i>
+            <span>On hand</span>
+        </li>
+        <li>
+            <i class="fas fa-file-invoice icon"></i>
+            <span>GRN Report</span>
+        </li>
+    </ul>
+
+    <!-- Toggle Mode -->
+    <div class="toggle-mode">
+        <button [class.active]="!isDarkMode" (click)="setMode(false)">
+            <i class="fas fa-sun icon"></i>
+            Light
+        </button>
+        <button [class.active]="isDarkMode" (click)="setMode(true)">
+            <i class="fas fa-moon icon"></i>
+            Dark
+        </button>
+    </div>
+</div>

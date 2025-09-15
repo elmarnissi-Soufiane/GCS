@@ -1,0 +1,125 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 12px;
+    background-color: #D1D16F;
+    color: #3c3c3c;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+    background-color: #3c3c3c;
+    color: white;
+}
+
+.pagination button.active {
+    background-color: #3c3c3c;
+    color: white;
+}
+
+.pagination button:disabled {
+    background-color: #3c3c3c;
+    color: white;
+    cursor: not-allowed;
+}
+
+.page-select-wrapper {
+    position: relative;
+}
+
+.page-select {
+    padding: 8px;
+    border: 1px solid #D1D16F;
+    border-radius: 4px;
+    background-color: white;
+    color: #3c3c3c;
+    cursor: pointer;
+    height: auto;
+    overflow-y: hidden;
+}
+
+.page-select:focus {
+    outline: none;
+    border-color: #3c3c3c;
+}
+
+.page-select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.page-select::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.page-select::-webkit-scrollbar-thumb {
+    background: #c4d500;
+    border-radius: 4px;
+}
+
+.page-select::-webkit-scrollbar-thumb:hover {
+    background: #a8b800;
+}
+
+/* Media Queries pour les écrans de petite taille */
+@media (max-width: 768px) {
+    .pagination {
+        flex-wrap: wrap;
+        gap: 5px;
+    }
+
+    .pagination button {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+
+    .page-select {
+        padding: 6px;
+        font-size: 14px;
+    }
+
+    .page-select-wrapper {
+        width: 100%;
+        text-align: center;
+    }
+
+    .page-select {
+        width: 100%;
+    }
+}
+
+/* Media Queries pour les écrans très petits (téléphones) */
+@media (max-width: 480px) {
+    .pagination {
+        gap: 3px;
+    }
+
+    .pagination button {
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .page-select {
+        padding: 4px;
+        font-size: 12px;
+    }
+
+    .pagination button,
+    .page-select {
+        width: 100%;
+    }
+
+    .page-select-wrapper {
+        width: 100%;
+    }
+}

@@ -1,0 +1,212 @@
+<!-- Gestion de Stock Dashboard -->
+<div class="stock-dashboard-container">
+
+    <!-- En-tête de page -->
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fa-solid fa-boxes-stacked"></i> {{ pageTitle }}
+        </h1>
+        <div class="page-actions">
+            <button class="btn-secondary" (click)="onExportData()">
+                <i class="fa-solid fa-download"></i> Exporter
+            </button>
+            <button class="btn-primary" (click)="onAddProduct()">
+                <i class="fa-solid fa-plus"></i> Ajouter Produit
+            </button>
+        </div>
+    </div>
+
+    <!-- Statistiques rapides -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon stat-total">
+                <i class="fa-solid fa-cube"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ allProducts.length }}</h3>
+                <p>Total Produits</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-in-stock">
+                <i class="fa-solid fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ inStockCount }}</h3>
+                <p>En Stock</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-low-stock">
+                <i class="fa-solid fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ lowStockCount }}</h3>
+                <p>Stock Faible</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon stat-out-stock">
+                <i class="fa-solid fa-times-circle"></i>
+            </div>
+            <div class="stat-content">
+                <h3>{{ outOfStockCount }}</h3>
+                <p>Rupture</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filtres et recherche -->
+    <div class="filters-section">
+        <div class="search-bar">
+            <div class="search-input-group">
+                <i class="fa-solid fa-search search-icon"></i>
+                <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher par nom, SKU ou fournisseur..."
+                    class="search-input">
+                <button *ngIf="searchTerm" (click)="searchTerm = ''" class="clear-search">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="filters-row">
+            <div class="filter-group">
+                <label><i class="fa-solid fa-tags"></i> Catégorie</label>
+                <select [(ngModel)]="selectedCategory" class="filter-select">
+                    <option value="">Toutes les catégories</option>
+                    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fa-solid fa-info-circle"></i> Statut</label>
+                <select [(ngModel)]="selectedStatus" class="filter-select">
+                    <option value="">Tous les statuts</option>
+                    <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label><i class="fa-solid fa-sort"></i> Trier par</label>
+                <select [(ngModel)]="sortBy" (change)="onSort(sortBy)" class="filter-select">
+                    <option value="name">Nom</option>
+                    <option value="category">Catégorie</option>
+                    <option value="quantity">Quantité</option>
+                    <option value="price">Prix</option>
+                    <option value="status">Statut</option>
+                </select>
+            </div>
+
+            <button (click)="resetFilters()" class="btn-reset" title="Réinitialiser les filtres">
+                <i class="fa-solid fa-refresh"></i> Reset
+            </button>
+        </div>
+    </div>
+
+    <!-- Résultats -->
+    <div class="results-info">
+        <span class="results-count">
+            <i class="fa-solid fa-list"></i>
+            {{ filteredProducts.length }} produit(s) trouvé(s)
+            <span *ngIf="searchTerm || selectedCategory || selectedStatus" class="filtered-badge">
+                (filtré)
+            </span>
+        </span>
+    </div>
+
+    <!-- Table des produits -->
+    <div class="table-container">
+        <table class="products-table">
+            <thead>
+                <tr>
+                    <th (click)="onSort('name')" class="sortable">
+                        <i class="fa-solid fa-cube"></i> Produit
+                        <i [class]="getSortIcon('name')"></i>
+                    </th>
+                    <th (click)="onSort('category')" class="sortable">
+                        <i class="fa-solid fa-tags"></i> Catégorie
+                        <i [class]="getSortIcon('category')"></i>
+                    </th>
+                    <th (click)="onSort('quantity')" class="sortable text-center">
+                        <i class="fa-solid fa-cubes"></i> Quantité
+                        <i [class]="getSortIcon('quantity')"></i>
+                    </th>
+                    <th (click)="onSort('price')" class="sortable text-right">
+                        <i class="fa-solid fa-euro-sign"></i> Prix
+                        <i [class]="getSortIcon('price')"></i>
+                    </th>
+                    <th (click)="onSort('status')" class="sortable text-center">
+                        <i class="fa-solid fa-info-circle"></i> Statut
+                        <i [class]="getSortIcon('status')"></i>
+                    </th>
+                    <th>
+                        <i class="fa-solid fa-cogs"></i> Actions
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let product of paginatedProducts" class="product-row">
+                    <td>
+                        <div class="product-info">
+                            <strong>{{ product.name }}</strong>
+                            <small>SKU: {{ product.sku }}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="category-badge">{{ product.category }}</span>
+                    </td>
+                    <td class="text-center">
+                        <span class="quantity-badge"
+                            [class.low-quantity]="product.quantity <= 5 && product.quantity > 0"
+                            [class.zero-quantity]="product.quantity === 0">
+                            {{ product.quantity }}
+                        </span>
+                    </td>
+                    <td class="text-right">
+                        <strong>{{ product.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</strong>
+                    </td>
+                    <td class="text-center">
+                        <span [class]="'status-badge ' + getStatusClass(product.status)">
+                            <i [class]="getStatusIcon(product.status)"></i>
+                            {{ product.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-action btn-view" title="Voir détails">
+                                <i class="fa-solid fa-eye"></i>
+                            </button>
+                            <button class="btn-action btn-edit" title="Modifier">
+                                <i class="fa-solid fa-edit"></i>
+                            </button>
+                            <button class="btn-action btn-delete" title="Supprimer">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Message si aucun résultat -->
+        <div *ngIf="filteredProducts.length === 0" class="no-results">
+            <div class="no-results-icon">
+                <i class="fa-solid fa-search"></i>
+            </div>
+            <h3>Aucun produit trouvé</h3>
+            <p *ngIf="searchTerm || selectedCategory || selectedStatus">
+                Essayez de modifier vos critères de recherche ou
+                <button (click)="resetFilters()" class="link-button">réinitialisez les filtres</button>
+            </p>
+            <p *ngIf="!searchTerm && !selectedCategory && !selectedStatus">
+                Commencez par ajouter des produits à votre stock.
+            </p>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <app-pagination *ngIf="filteredProducts.length > 0" [currentPage]="currentPage" [itemsPerPage]="itemsPerPage"
+        [totalItems]="filteredProducts.length" (pageChange)="onPageChange($event)">
+    </app-pagination>
+
+</div>

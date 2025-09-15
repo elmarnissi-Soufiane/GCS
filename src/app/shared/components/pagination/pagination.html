@@ -1,0 +1,28 @@
+
+<div class="pagination">
+    <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">
+        Précédent
+    </button>
+
+    <div class="page-select-wrapper">
+        <select class="page-select" (change)="changePage($any($event.target).value)">
+            @for (page of getPageOptions(); track page) {
+            <option [value]="page" [selected]="page === currentPage">Page {{ page }}</option>
+            }
+        </select>
+    </div>
+
+    @for (page of getVisiblePages(); track $index) {
+    @if (page === '...') {
+    <span class="ellipsis">...</span>
+    } @else {
+    <button (click)="changePage(page)" [class.active]="page === currentPage">
+        {{ page }}
+    </button>
+    }
+    }
+
+    <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">
+        Suivant
+    </button>
+</div>

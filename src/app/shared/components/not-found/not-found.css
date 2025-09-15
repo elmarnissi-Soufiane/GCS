@@ -1,0 +1,119 @@
+.projects-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+}
+
+/* Header d’actions */
+.actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 10px;
+    flex: 1;
+    max-width: 300px;
+}
+
+.search-box i {
+    color: #777;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn.primary {
+    background: #0d6efd;
+    color: #fff;
+}
+
+/* Etat vide */
+.empty-state {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-align: center;
+    color: #333;
+}
+
+.empty-state img {
+    max-width: 220px;
+}
+
+.message {
+    font-weight: 500;
+    font-size: 16px;
+}
+
+/* Footer pagination */
+.pagination-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+    color: #555;
+}
+
+.showing select {
+    margin-left: 5px;
+    padding: 4px 6px;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pagination button {
+    border: 1px solid #ddd;
+    background: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.pagination button.active {
+    border-color: #0d6efd;
+    color: #0d6efd;
+    font-weight: 600;
+}

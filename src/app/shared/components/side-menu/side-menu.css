@@ -1,0 +1,111 @@
+/* Sidebar base */
+.sidebar {
+    width: 220px;
+    height: 95vh;
+    background: #f1f8ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+}
+
+/* Logo */
+.sidebar .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.sidebar .logo img {
+    width: 30px;
+}
+
+.sidebar .logo h2 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/* Menu */
+.sidebar .menu {
+    list-style: none;
+    padding: 0;
+    flex: 1;
+}
+
+.sidebar .menu li {
+    display: flex;
+    align-items: center;
+    padding: 10px 8px;
+    border-radius: 8px;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.sidebar .menu li.active,
+.sidebar .menu li:hover {
+    background: #e0ecff;
+    color: #2563eb;
+}
+
+.sidebar .menu li i {
+    margin-right: 10px;
+}
+
+/* Toggle Mode */
+.sidebar .toggle-mode {
+    display: flex;
+    gap: 10px;
+}
+
+.sidebar .toggle-mode button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #d9e7ff;
+    color: #333;
+    font-weight: 500;
+}
+
+.sidebar .toggle-mode button.active {
+    background: #2563eb;
+    color: #fff;
+}
+
+/* DARK MODE */
+.sidebar.dark {
+    background: #2563eb;
+}
+
+.sidebar.dark .menu li {
+    color: #eee;
+}
+
+.sidebar.dark .menu li.active,
+.sidebar.dark .menu li:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+}
+
+.sidebar.dark .toggle-mode button {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.sidebar.dark .toggle-mode button.active {
+    background: #fff;
+    color: #2563eb;
+}
+
+.icon {
+    width: 20px;
+    margin-right: 12px;
+    font-size: 16px;
+}

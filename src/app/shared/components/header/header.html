@@ -1,0 +1,42 @@
+<div class="header">
+    <!-- Gauche -->
+    <div class="welcome">
+        <h2>Hello Mathias 👋</h2>
+        <p>Good Morning</p>
+    </div>
+
+    <!-- Centre -->
+    <div class="search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search" />
+    </div>
+
+    <!-- Droite -->
+    <div class="actions">
+        <button class="icon-btn">
+            <i class="fas fa-bell"></i>
+        </button>
+
+        <!-- Profil avec dropdown -->
+        <div class="profile-wrapper" (click)="toggleDropdown()">
+            <div class="profile">
+                <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="profile" class="avatar" />
+                <div class="info">
+                    <span class="name">Mathias W.</span>
+                    <span class="role">Store Manager</span>
+                </div>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+
+            <!-- Menu dropdown -->
+            <ul class="dropdown" *ngIf="isDropdownOpen">
+                <li (click)="goToProfile()">
+                    <i class="fas fa-user"></i> Profile
+                </li>
+                <li (click)="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Déconnexion
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

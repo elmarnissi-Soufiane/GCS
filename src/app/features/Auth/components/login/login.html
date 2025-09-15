@@ -1,0 +1,35 @@
+<div class="wrapper">
+    <div class="container">
+        <!-- Left side panel -->
+        <div class="left-panel"></div>
+
+        <!-- Right side form -->
+        <div class="right-panel">
+            <div class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Logo">
+                <h2>GSC</h2>
+            </div>
+
+            <div class="welcome">Welcome 👋</div>
+            <div class="subtitle">Please login here</div>
+
+            <form (ngSubmit)="onLogin()">
+                <div class="form-group">
+                    <input type="email" placeholder="Email Address" [(ngModel)]="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" [(ngModel)]="password" name="password" required>
+                </div>
+                <div class="options">
+                    <label>
+                        <input type="checkbox" [(ngModel)]="rememberMe" name="rememberMe">
+                        Remember Me
+                    </label>
+                    <!-- 🔹 lien vers forgot password -->
+                    <a href="/forgot-password">Forgot Password?</a>
+                </div>
+                <button class="login-btn" type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
