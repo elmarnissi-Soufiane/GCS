@@ -1,0 +1,296 @@
+<div class="modal">
+    <div class="modal-header">
+        <h2 class="modal-title">
+            <i class="fas fa-plus-circle"></i>
+            Ajouter un Nouvel Article
+        </h2>
+        <button class="close-btn" (click)="closeModal()">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+
+    <div class="form-container">
+        <form id="addItemForm">
+            <div class="form-grid">
+                <!-- Article Consommable -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-box"></i>
+                        Article Consommable
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Sélectionner un article</option>
+                            <option value="item1">Article 1</option>
+                            <option value="item2">Article 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Nom de l'Article -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-tag"></i>
+                        Nom de l'Article <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Saisir le nom de l'article">
+                </div>
+
+                <!-- Type -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-list"></i>
+                        Type <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Veuillez sélectionner</option>
+                            <option value="type1">Type 1</option>
+                            <option value="type2">Type 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Statut -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-info-circle"></i>
+                        Statut
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Sélectionner le statut</option>
+                            <option value="active">Actif</option>
+                            <option value="inactive">Inactif</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Image -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-image"></i>
+                        Image <span class="required">*</span>
+                    </label>
+                    <div class="file-upload" onclick="document.getElementById('imageFile').click()">
+                        <div class="file-upload-text">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            Télécharger une Image
+                        </div>
+                        <input type="file" id="imageFile" class="file-input" accept="image/*">
+                    </div>
+                </div>
+
+                <!-- Numéro d'Article -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-hashtag"></i>
+                        Numéro d'Article <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="Saisir le numéro d'article">
+                </div>
+
+                <!-- Numéro de Série -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-barcode"></i>
+                        Numéro de Série <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Veuillez sélectionner le Numéro de Série</option>
+                            <option value="sn1">SN001</option>
+                            <option value="sn2">SN002</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Montant -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-calculator"></i>
+                        Montant <span class="required">*</span>
+                    </label>
+                    <input type="number" class="form-input" placeholder="0">
+                </div>
+
+                <!-- Unité de Mesure -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-ruler"></i>
+                        Unité de Mesure <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Choisir l'Unité de Mesure</option>
+                            <option value="kg">Kilogramme</option>
+                            <option value="g">Gramme</option>
+                            <option value="l">Litre</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Date d'Achat -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-calendar-alt"></i>
+                        Date d'Achat <span class="required">*</span>
+                    </label>
+                    <div class="date-input">
+                        <input type="date" class="form-input">
+                    </div>
+                </div>
+
+                <!-- Prix -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Prix <span class="required">*</span>
+                    </label>
+                    <input type="number" class="form-input" placeholder="0,00" step="0.01">
+                </div>
+
+                <!-- Équipement IT -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-desktop"></i>
+                        Équipement IT <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Sélectionner l'équipement</option>
+                            <option value="laptop">Ordinateur portable</option>
+                            <option value="desktop">Ordinateur de bureau</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Devise -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-coins"></i>
+                        Devise <span class="required">*</span>
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Choisir la devise</option>
+                            <option value="usd">USD</option>
+                            <option value="eur">EUR</option>
+                            <option value="mad">MAD</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Projet -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-project-diagram"></i>
+                        Projet
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Choisir le projet</option>
+                            <option value="project1">Projet 1</option>
+                            <option value="project2">Projet 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Marque -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-certificate"></i>
+                        Marque
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Choisir la Marque</option>
+                            <option value="brand1">Marque 1</option>
+                            <option value="brand2">Marque 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Catégorie -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-folder"></i>
+                        Catégorie
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Choisir la catégorie</option>
+                            <option value="cat1">Catégorie 1</option>
+                            <option value="cat2">Catégorie 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Département -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-building"></i>
+                        Département
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Choisir le département</option>
+                            <option value="it">IT</option>
+                            <option value="hr">RH</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Fabricant -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-industry"></i>
+                        Fabricant
+                    </label>
+                    <div class="select-wrapper">
+                        <select class="form-select">
+                            <option value="">Choisir le FABRICANT</option>
+                            <option value="man1">Fabricant 1</option>
+                            <option value="man2">Fabricant 2</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Garantie -->
+                <div class="form-group">
+                    <label class="form-label">
+                        <i class="fas fa-shield-alt"></i>
+                        Garantie
+                    </label>
+                    <div class="file-upload" onclick="document.getElementById('warrantyFile').click()">
+                        <div class="file-upload-text">
+                            <i class="fas fa-file-alt"></i>
+                            Choisir le Fichier
+                        </div>
+                        <input type="file" id="warrantyFile" class="file-input">
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="form-group full-width">
+                    <label class="form-label">
+                        <i class="fas fa-align-left"></i>
+                        Description
+                    </label>
+                    <textarea class="form-input textarea" placeholder="Saisir la description"></textarea>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" (click)="closeModal()">
+                    <i class="fas fa-times"></i>
+                    Annuler
+                </button>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-plus"></i>
+                    Ajouter
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
