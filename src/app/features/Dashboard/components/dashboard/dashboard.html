@@ -1,6 +1,5 @@
 <!-- Gestion de Stock Dashboard -->
 <div class="stock-dashboard-container">
-
     <!-- En-tête de page -->
     <div class="page-header">
         <h1 class="page-title">
@@ -56,157 +55,239 @@
         </div>
     </div>
 
-    <!-- Filtres et recherche -->
-    <div class="filters-section">
-        <div class="search-bar">
-            <div class="search-input-group">
-                <i class="fa-solid fa-search search-icon"></i>
-                <input type="text" [(ngModel)]="searchTerm" placeholder="Rechercher par nom, SKU ou fournisseur..."
-                    class="search-input">
-                <button *ngIf="searchTerm" (click)="searchTerm = ''" class="clear-search">
-                    <i class="fa-solid fa-times"></i>
-                </button>
+    <!-- Top tables -->
+    <div class="grid-top">
+        <div class="card">
+            <div class="card-header">
+                <h3>Item List</h3><a href="#">View All</a>
+            </div>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Name</th>
+                            <th style="width:64px">Image</th>
+                            <th>Store</th>
+                            <th style="width:90px">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gas Kitting</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/kit1/40/40" alt="kit1"></span>
+                            </td>
+                            <td>22 House Store</td>
+                            <td>1 pcs</td>
+                        </tr>
+                        <tr>
+                            <td>Condet</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/cond1/40/40"
+                                        alt="cond1"></span>
+                            </td>
+                            <td>HQ Main Store</td>
+                            <td>3 pcs</td>
+                        </tr>
+                        <tr>
+                            <td>Condet</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/cond2/40/40"
+                                        alt="cond2"></span>
+                            </td>
+                            <td>HQ Main Store</td>
+                            <td>5 pcs</td>
+                        </tr>
+                        <tr>
+                            <td>Condet</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/cond3/40/40"
+                                        alt="cond3"></span>
+                            </td>
+                            <td>HQ Main Store</td>
+                            <td>5 pcs</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <div class="filters-row">
-            <div class="filter-group">
-                <label><i class="fa-solid fa-tags"></i> Catégorie</label>
-                <select [(ngModel)]="selectedCategory" class="filter-select">
-                    <option value="">Toutes les catégories</option>
-                    <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-                </select>
+        <div class="card">
+            <div class="card-header">
+                <h3>Asset List</h3><a href="#">View All</a>
             </div>
-
-            <div class="filter-group">
-                <label><i class="fa-solid fa-info-circle"></i> Statut</label>
-                <select [(ngModel)]="selectedStatus" class="filter-select">
-                    <option value="">Tous les statuts</option>
-                    <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
-                </select>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Asset Name</th>
+                            <th style="width:64px">Image</th>
+                            <th>Store</th>
+                            <th style="width:90px">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gas Kitting</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/asset1/40/40"
+                                        alt="asset1"></span>
+                            </td>
+                            <td>22 House Store</td>
+                            <td>1 pcs</td>
+                        </tr>
+                        <tr>
+                            <td>Condet</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/asset2/40/40"
+                                        alt="asset2"></span>
+                            </td>
+                            <td>HQ Main Store</td>
+                            <td>3 pcs</td>
+                        </tr>
+                        <tr>
+                            <td>Condet</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/asset3/40/40"
+                                        alt="asset3"></span>
+                            </td>
+                            <td>HQ Main Store</td>
+                            <td>5 pcs</td>
+                        </tr>
+                        <tr>
+                            <td>Condet</td>
+                            <td><span class="thumb"><img src="https://picsum.photos/seed/asset4/40/40"
+                                        alt="asset4"></span>
+                            </td>
+                            <td>HQ Main Store</td>
+                            <td>5 pcs</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
-
-            <div class="filter-group">
-                <label><i class="fa-solid fa-sort"></i> Trier par</label>
-                <select [(ngModel)]="sortBy" (change)="onSort(sortBy)" class="filter-select">
-                    <option value="name">Nom</option>
-                    <option value="category">Catégorie</option>
-                    <option value="quantity">Quantité</option>
-                    <option value="price">Prix</option>
-                    <option value="status">Statut</option>
-                </select>
-            </div>
-
-            <button (click)="resetFilters()" class="btn-reset" title="Réinitialiser les filtres">
-                <i class="fa-solid fa-refresh"></i> Reset
-            </button>
         </div>
     </div>
 
-    <!-- Résultats -->
-    <div class="results-info">
-        <span class="results-count">
-            <i class="fa-solid fa-list"></i>
-            {{ filteredProducts.length }} produit(s) trouvé(s)
-            <span *ngIf="searchTerm || selectedCategory || selectedStatus" class="filtered-badge">
-                (filtré)
-            </span>
-        </span>
-    </div>
 
-    <!-- Table des produits -->
-    <div class="table-container">
-        <table class="products-table">
-            <thead>
-                <tr>
-                    <th (click)="onSort('name')" class="sortable">
-                        <i class="fa-solid fa-cube"></i> Produit
-                        <i [class]="getSortIcon('name')"></i>
-                    </th>
-                    <th (click)="onSort('category')" class="sortable">
-                        <i class="fa-solid fa-tags"></i> Catégorie
-                        <i [class]="getSortIcon('category')"></i>
-                    </th>
-                    <th (click)="onSort('quantity')" class="sortable text-center">
-                        <i class="fa-solid fa-cubes"></i> Quantité
-                        <i [class]="getSortIcon('quantity')"></i>
-                    </th>
-                    <th (click)="onSort('price')" class="sortable text-right">
-                        <i class="fa-solid fa-euro-sign"></i> Prix
-                        <i [class]="getSortIcon('price')"></i>
-                    </th>
-                    <th (click)="onSort('status')" class="sortable text-center">
-                        <i class="fa-solid fa-info-circle"></i> Statut
-                        <i [class]="getSortIcon('status')"></i>
-                    </th>
-                    <th>
-                        <i class="fa-solid fa-cogs"></i> Actions
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let product of paginatedProducts" class="product-row">
-                    <td>
-                        <div class="product-info">
-                            <strong>{{ product.name }}</strong>
-                            <small>SKU: {{ product.sku }}</small>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="category-badge">{{ product.category }}</span>
-                    </td>
-                    <td class="text-center">
-                        <span class="quantity-badge"
-                            [class.low-quantity]="product.quantity <= 5 && product.quantity > 0"
-                            [class.zero-quantity]="product.quantity === 0">
-                            {{ product.quantity }}
-                        </span>
-                    </td>
-                    <td class="text-right">
-                        <strong>{{ product.price | currency:'EUR':'symbol':'1.2-2':'fr' }}</strong>
-                    </td>
-                    <td class="text-center">
-                        <span [class]="'status-badge ' + getStatusClass(product.status)">
-                            <i [class]="getStatusIcon(product.status)"></i>
-                            {{ product.status }}
-                        </span>
-                    </td>
-                    <td>
-                        <div class="action-buttons">
-                            <button class="btn-action btn-view" title="Voir détails">
-                                <i class="fa-solid fa-eye"></i>
-                            </button>
-                            <button class="btn-action btn-edit" title="Modifier">
-                                <i class="fa-solid fa-edit"></i>
-                            </button>
-                            <button class="btn-action btn-delete" title="Supprimer">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <!-- Summary (50/50) -->
+    <div class="summary-container">
+        <!-- Colonne gauche : Progression -->
+        <div class="card progress-card">
+            <h3 class="progress-title">Suivi des métriques</h3>
 
-        <!-- Message si aucun résultat -->
-        <div *ngIf="filteredProducts.length === 0" class="no-results">
-            <div class="no-results-icon">
-                <i class="fa-solid fa-search"></i>
+            <div class="progress-item">
+                <p>Inventory Progress <span>70%</span></p>
+                <div class="progress-bar">
+                    <div class="progress-fill p-blue"></div>
+                </div>
+                <small class="text-green"><i class="fa-solid fa-circle-check"></i> On Track</small>
             </div>
-            <h3>Aucun produit trouvé</h3>
-            <p *ngIf="searchTerm || selectedCategory || selectedStatus">
-                Essayez de modifier vos critères de recherche ou
-                <button (click)="resetFilters()" class="link-button">réinitialisez les filtres</button>
-            </p>
-            <p *ngIf="!searchTerm && !selectedCategory && !selectedStatus">
-                Commencez par ajouter des produits à votre stock.
-            </p>
+
+            <div class="progress-item">
+                <p>Assets Received <span>50%</span></p>
+                <div class="progress-bar">
+                    <div class="progress-fill p-green"></div>
+                </div>
+                <small class="text-amber"><i class="fa-solid fa-triangle-exclamation"></i> Pending</small>
+            </div>
+
+            <div class="progress-item">
+                <p>Suppliers Engaged <span>80%</span></p>
+                <div class="progress-bar">
+                    <div class="progress-fill p-amber"></div>
+                </div>
+                <small class="text-green"><i class="fa-solid fa-circle-check"></i> Completed</small>
+            </div>
+        </div>
+
+
+        <!-- Right: grid of the 4 small summary cards (2 columns inside this half) -->
+        <div class="right-col">
+            <!-- top-left -->
+            <div class="summary-card">
+                <div class="summary-title">Item Summary</div>
+                <div class="summary-values">
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <rect x="3" y="6" width="18" height="12" rx="2" fill="#FFEDD5"></rect>
+                            <rect x="7" y="9" width="10" height="6" rx="1" fill="#F97316"></rect>
+                        </svg>
+                        <div class="big-num">868</div>
+                        <div class="muted">Quantity in Hand</div>
+                    </div>
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <rect x="3" y="6" width="18" height="12" rx="2" fill="#EEF2FF"></rect>
+                            <path d="M6 12h12v2H6z" fill="#3B82F6"></path>
+                        </svg>
+                        <div class="big-num">200</div>
+                        <div class="muted">To be received</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- top-right -->
+            <div class="summary-card">
+                <div class="summary-title">Total items</div>
+                <div class="summary-values">
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <circle cx="12" cy="8" r="6" fill="#ECFEFF"></circle>
+                            <rect x="7" y="11" width="10" height="7" rx="2" fill="#06B6D4"></rect>
+                        </svg>
+                        <div class="big-num">31</div>
+                        <div class="muted">Total Number of Items</div>
+                    </div>
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <rect x="3" y="3" width="18" height="18" rx="3" fill="#F3E8FF"></rect>
+                            <rect x="7" y="6" width="10" height="12" rx="2" fill="#A78BFA"></rect>
+                        </svg>
+                        <div class="big-num">21</div>
+                        <div class="muted">To be received</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- bottom-left -->
+            <div class="summary-card">
+                <div class="summary-title">Product Summary</div>
+                <div class="summary-values">
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <circle cx="12" cy="12" r="10" fill="#EFF6FF"></circle>
+                            <path d="M8 9h8v2H8zM8 13h8v2H8z" fill="#2563EB"></path>
+                        </svg>
+                        <div class="big-num">31</div>
+                        <div class="muted">Number of Suppliers</div>
+                    </div>
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <rect x="3" y="5" width="18" height="14" rx="3" fill="#F8FAFF"></rect>
+                            <path d="M7 9h10v2H7zM7 13h10v2H7z" fill="#C7B9FF"></path>
+                        </svg>
+                        <div class="big-num">21</div>
+                        <div class="muted">Number of Categories</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- bottom-right -->
+            <div class="summary-card">
+                <div class="summary-title">Total assets</div>
+                <div class="summary-values">
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <rect x="3" y="6" width="18" height="12" rx="2" fill="#F0FDFF"></rect>
+                            <rect x="6" y="8" width="12" height="8" rx="1" fill="#06B6D4"></rect>
+                        </svg>
+                        <div class="big-num">31</div>
+                        <div class="muted">Total Number of assets</div>
+                    </div>
+                    <div class="summary-item">
+                        <svg class="icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+                            <rect x="3" y="4" width="18" height="16" rx="3" fill="#FBF7FF"></rect>
+                            <rect x="7" y="7" width="10" height="10" rx="2" fill="#C7B9FF"></rect>
+                        </svg>
+                        <div class="big-num">21</div>
+                        <div class="muted">To be received</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
-    <!-- Pagination -->
-    <app-pagination *ngIf="filteredProducts.length > 0" [currentPage]="currentPage" [itemsPerPage]="itemsPerPage"
-        [totalItems]="filteredProducts.length" (pageChange)="onPageChange($event)">
-    </app-pagination>
-
 </div>

@@ -13,7 +13,7 @@
 /* Sidebar desktop */
 .side {
     flex: 0 0 250px;
-    /* largeur fixe */
+    /* largeur fixe par défaut */
     max-width: 300px;
     min-width: 220px;
     background: #f1f5f9;
@@ -35,13 +35,19 @@
     padding: 20px;
 }
 
-/* 🌐 Responsive */
+/* 📱 Mobile : sidebar cachée, contenu prend toute la largeur */
 @media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        /* stack */
+    }
+
     .side {
-        position: fixed;
+        position: absolute;
         top: 0;
         left: 0;
         height: 100%;
+        width: 220px;
         transform: translateX(-100%);
         /* cachée par défaut */
         z-index: 1000;
@@ -49,12 +55,22 @@
 
     .side.open {
         transform: translateX(0);
-        /* affichée si on ajoute la classe "open" */
+        /* visible si classe "open" */
     }
 
     .content {
         flex: 1;
         width: 100%;
-        /* prend toute la largeur */
+    }
+}
+
+/* 📟 Tablette : sidebar plus petite */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .side {
+        flex: 0 0 200px;
+    }
+
+    .page {
+        padding: 15px;
     }
 }

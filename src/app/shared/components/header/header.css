@@ -1,22 +1,24 @@
 .header {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
     height: 70px;
     padding: 0 20px;
     background: #fff;
     border-bottom: 1px solid #eee;
+    gap: 15px;
 }
 
 /* Gauche */
 .welcome h2 {
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 18px;
+    font-weight: 700;
     margin: 0;
 }
 
 .welcome p {
-    font-size: 13px;
+    font-size: 14px;
     color: #888;
     margin: 0;
 }
@@ -24,18 +26,24 @@
 /* Recherche */
 .search {
     flex: 1;
-    max-width: 400px;
+    max-width: 500px;
     display: flex;
     align-items: center;
-    background: #f8fafc;
-    border-radius: 10px;
-    padding: 5px 10px;
-    margin: 0 30px;
+    background: #e0f7fa;
+    border-radius: 12px;
+    padding: 8px 12px;
+    margin: 0 20px;
+    transition: all 0.3s ease;
+}
+
+.search:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .search i {
-    color: #888;
+    color: #00796b;
     margin-right: 10px;
+    font-size: 18px;
 }
 
 .search input {
@@ -43,27 +51,38 @@
     outline: none;
     background: transparent;
     flex: 1;
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #333;
 }
 
 /* Actions */
 .actions {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
 }
 
 .icon-btn {
     border: none;
-    background: #f8fafc;
-    border-radius: 10px;
-    padding: 8px 10px;
+    background: #e0f7fa;
+    border-radius: 12px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.icon-btn:hover {
+    background: #b2ebf2;
 }
 
 .icon-btn i {
-    font-size: 16px;
-    color: #333;
+    font-size: 18px;
+    color: #00796b;
 }
 
 /* Profil */
@@ -71,15 +90,20 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    background: #f8fafc;
+    background: #e0f7fa;
     border-radius: 12px;
-    padding: 5px 10px;
+    padding: 5px 12px;
     cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.profile:hover {
+    background: #b2ebf2;
 }
 
 .avatar {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     object-fit: cover;
 }
@@ -91,13 +115,13 @@
 }
 
 .name {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
 }
 
 .role {
-    font-size: 12px;
-    color: #888;
+    font-size: 13px;
+    color: #555;
 }
 
 .profile-wrapper {
@@ -109,25 +133,103 @@
     right: 0;
     top: 110%;
     background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     list-style: none;
     padding: 10px 0;
     margin: 0;
-    min-width: 160px;
+    min-width: 180px;
     z-index: 1000;
 }
 
 .dropdown li {
-    padding: 10px 15px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
     gap: 10px;
     cursor: pointer;
     font-size: 14px;
     color: #333;
+    transition: background 0.2s;
 }
 
 .dropdown li:hover {
-    background: #f5f5f5;
+    background: #f0f0f0;
+}
+
+/* ------------------ Responsive ------------------ */
+
+/* Tablette */
+@media (max-width: 1024px) {
+    .search {
+        max-width: 400px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: stretch;
+        height: auto;
+        padding: 10px;
+    }
+
+    .search {
+        order: 2;
+        margin: 10px 0;
+        max-width: 100%;
+    }
+
+    .actions {
+        justify-content: flex-end;
+        order: 3;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .welcome {
+        order: 1;
+        margin-bottom: 5px;
+    }
+
+    /* Afficher un bouton hamburger */
+    .hamburger {
+        display: block;
+        font-size: 22px;
+        background: #e0f7fa;
+        border-radius: 10px;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}
+
+/* Petit mobile */
+@media (max-width: 480px) {
+    .welcome h2 {
+        font-size: 16px;
+    }
+
+    .welcome p {
+        font-size: 12px;
+    }
+
+    .icon-btn {
+        width: 35px;
+        height: 35px;
+    }
+
+    .icon-btn i {
+        font-size: 16px;
+    }
+
+    .profile .name,
+    .profile .role {
+        display: none;
+        /* avatar seul */
+    }
 }

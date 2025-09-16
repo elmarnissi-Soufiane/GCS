@@ -8,16 +8,20 @@
     <!-- Centre -->
     <div class="search">
         <i class="fas fa-search"></i>
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search for products, orders..." />
     </div>
 
     <!-- Droite -->
     <div class="actions">
+
+        <button class="icon-btn" (click)="toggleTheme()">
+            <i [ngClass]="isDarkMode ? 'fas fa-sun' : 'fas fa-moon'"></i>
+        </button>
+
         <button class="icon-btn">
             <i class="fas fa-bell"></i>
         </button>
 
-        <!-- Profil avec dropdown -->
         <div class="profile-wrapper" (click)="toggleDropdown()">
             <div class="profile">
                 <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="profile" class="avatar" />
@@ -28,7 +32,6 @@
                 <i class="fas fa-chevron-down"></i>
             </div>
 
-            <!-- Menu dropdown -->
             <ul class="dropdown" *ngIf="isDropdownOpen">
                 <li (click)="goToProfile()">
                     <i class="fas fa-user"></i> Profile

@@ -1,1 +1,40 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    font-family: "gesta", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* margin: 0px;
+    color: #333; */
+}
+
+body.dark-mode {
+    background: #121212;
+    color: #eee;
+}
+
+body.dark-mode .header {
+    background: #1e1e1e;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-mode .search {
+    background: #333;
+}
+
+body.dark-mode .search input {
+    color: #eee;
+}
+
+body.dark-mode .icon-btn {
+    background: #333;
+}
+
+body.dark-mode .icon-btn i {
+    color: #fbc02d;
+}
+
+body.dark-mode .profile {
+    background: #333;
+}
+
+body.dark-mode .dropdown {
+    background: #222;
+    color: #eee;
+}

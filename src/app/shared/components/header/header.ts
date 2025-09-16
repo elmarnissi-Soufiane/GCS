@@ -1,13 +1,17 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
 export class Header {
+  @Input() isDarkMode = false;
+  @Output() themeToggle = new EventEmitter<void>();
+
   isDropdownOpen = false;
 
   toggleDropdown() {
@@ -16,11 +20,15 @@ export class Header {
 
   goToProfile() {
     console.log("Naviguer vers la page Profil");
-    // this.router.navigate(['/profile']);
   }
 
   logout() {
     console.log("Déconnexion...");
-    // Ici tu mets ton service Auth pour déconnecter
   }
+
+  toggleTheme() {
+    console.log("Theme toggle clicked in Header");
+    this.themeToggle.emit();
+  }
+
 }
