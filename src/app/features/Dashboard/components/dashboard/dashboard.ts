@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ItemProduct } from '../../../items/components/item-product/item-product';
 
 interface Product {
   name: string;
@@ -13,13 +15,16 @@ interface Product {
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, ItemProduct],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class Dashboard {
 
+  constructor(private router: Router) { }
+
   pageTitle: string = 'Dashboard';
+  isModalOpen = false;
 
   // Données simulées
   allProducts: Product[] = Array.from({ length: 50 }, (_, i) => ({
@@ -47,8 +52,16 @@ export class Dashboard {
     alert('Exporter CSV/Excel');
   }
 
-  onAddProduct(): void {
-    alert('Ajouter un produit');
+  openModal() {
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  goToItems() {
+    this.router.navigate(['/items']);
   }
 
 }

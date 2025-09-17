@@ -5,7 +5,7 @@ import { Register } from './features/Auth/components/register/register';
 import { Dashboard } from './features/Dashboard/components/dashboard/dashboard';
 import { LayoutPage } from './features/Layout/components/layout-page/layout-page';
 import { NotFound } from './shared/components/not-found/not-found';
-import { Product } from './features/products/components/product/product';
+import { Item } from './features/items/components/item/item';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,7 +17,7 @@ export const routes: Routes = [
         component: LayoutPage,
         children: [
             { path: 'dashboard', component: Dashboard },
-            { path: 'items', component: Product },
+            { path: 'items', component: Item },
             { path: '**', component: NotFound }
         ]
     },

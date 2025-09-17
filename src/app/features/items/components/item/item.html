@@ -1,0 +1,138 @@
+<div class="container-items">
+    <div class="page-header">
+        <h1 class="page-title">
+            <i class="fa-solid fa-boxes-stacked"></i> {{ pageTitle }}
+        </h1>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search Item" [(ngModel)]="searchTerm">
+            </div>
+            <div class="header-buttons">
+                <div class="gift-icon">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <button class="btn btn-primary" (click)="openModal()">
+                    <i class="fas fa-plus"></i>
+                    Add Item
+                </button>
+                <button class="btn btn-outline">
+                    <i class="fas fa-filter"></i>
+                    Filter
+                </button>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th (click)="sort('name')">
+                        Item Name
+                        <i class="fas" [class.fa-sort-up]="sortColumn === 'name' && sortAsc"
+                            [class.fa-sort-down]="sortColumn === 'name' && !sortAsc"
+                            [class.fa-sort]="sortColumn !== 'name'"></i>
+                    </th>
+                    <th>Image</th>
+                    <th (click)="sort('model')">
+                        Model
+                        <i class="fas" [class.fa-sort-up]="sortColumn === 'model' && sortAsc"
+                            [class.fa-sort-down]="sortColumn === 'model' && !sortAsc"
+                            [class.fa-sort]="sortColumn !== 'model'"></i>
+                    </th>
+                    <th (click)="sort('type')">
+                        Type
+                        <i class="fas" [class.fa-sort-up]="sortColumn === 'type' && sortAsc"
+                            [class.fa-sort-down]="sortColumn === 'type' && !sortAsc"
+                            [class.fa-sort]="sortColumn !== 'type'"></i>
+                    </th>
+                    <th (click)="sort('store')">
+                        Store
+                        <i class="fas" [class.fa-sort-up]="sortColumn === 'store' && sortAsc"
+                            [class.fa-sort-down]="sortColumn === 'store' && !sortAsc"
+                            [class.fa-sort]="sortColumn !== 'store'"></i>
+                    </th>
+                    <th (click)="sort('amount')">
+                        Amount
+                        <i class="fas" [class.fa-sort-up]="sortColumn === 'amount' && sortAsc"
+                            [class.fa-sort-down]="sortColumn === 'amount' && !sortAsc"
+                            [class.fa-sort]="sortColumn !== 'amount'"></i>
+                    </th>
+                    <th (click)="sort('project')">
+                        Project
+                        <i class="fas" [class.fa-sort-up]="sortColumn === 'project' && sortAsc"
+                            [class.fa-sort-down]="sortColumn === 'project' && !sortAsc"
+                            [class.fa-sort]="sortColumn !== 'project'"></i>
+                    </th>
+                    <th>Account</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (product of filteredProducts; track product.name) {
+                <tr>
+                    <td><input type="checkbox" class="checkbox"></td>
+                    <td>{{ product.name }}</td>
+                    <td>
+                        <div class="item-image"><i class="fas {{ product.image }}"></i></div>
+                    </td>
+                    <td>{{ product.model }}</td>
+                    <td>{{ product.type }}</td>
+                    <td>{{ product.store }}</td>
+                    <td>{{ product.amount }}</td>
+                    <td>{{ product.project }}</td>
+                    <td>
+                        @if (product.status === 'activated') {
+                        <span class="status-badge status-activated">
+                            <i class="fas fa-check-circle"></i> Activated
+                        </span>
+                        }
+                        @if (product.status === 'invitation') {
+                        <span class="status-badge status-invitation">
+                            <i class="fas fa-envelope"></i> Need Invitation
+                        </span>
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="progress-bar">
+            <div class="progress-fill"></div>
+        </div>
+
+        <div class="pagination">
+            <div class="pagination-info">
+                <span>Showing</span>
+                <select class="pagination-select" (change)="setPageSize($any($event.target).value)">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+                <span>Showing {{ showingStart }} to {{ showingEnd }} out of {{ totalFilteredItems }} records</span>
+            </div>
+            <div class="pagination-controls">
+                <button class="pagination-btn" (click)="changePage(page-1)" [disabled]="page === 1">‹</button>
+
+                @for (p of [].constructor(totalPages()); let i = $index; track i) {
+                <button class="pagination-btn" [class.active]="page === i+1" (click)="changePage(i+1)">
+                    {{ i+1 }}
+                </button>
+                }
+
+                <button class="pagination-btn" (click)="changePage(page+1)"
+                    [disabled]="page === totalPages()">›</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+@if (isModalOpen) {
+<div class="modal-backdrop">
+    <app-item-product (close)="closeModal()"></app-item-product>
+</div>
+}
